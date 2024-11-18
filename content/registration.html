@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Volleyball Event</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #101820;
+      color: white;
+    }
+    header {
+      background-color: #00bcd4;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+    .register-form {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 8px;
+      width: 400px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+    .register-form h2 {
+      text-align: center;
+      color: #00bcd4;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #00bcd4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #00796b;
+    }
+    footer {
+      background: #101820;
+      color: #ccc;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Volleyball Event Registration</h1>
+</header>
+
+<div class="container">
+  <form class="register-form">
+    <h2>Register for the Event</h2>
+    <input type="text" placeholder="Full Name" required>
+    <input type="email" placeholder="Email" required>
+    <input type="text" placeholder="Team Name" required>
+    <select required>
+      <option value="">Select Age Group</option>
+      <option value="U18">Under 18</option>
+      <option value="18+">18+</option>
+      <option value="30+">30+</option>
+    </select>
+    <button type="submit">Register</button>
+  </form>
+</div>
+
+<footer>
+  <p>&copy; 2024 Volleyball Website. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

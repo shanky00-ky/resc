@@ -1,0 +1,805 @@
+/* Global Settings */
+* {
+  box-sizing: border-box; /* Ensures padding and border are included in width/height */
+}
+
+body {
+  font-family: 'Poppins', sans-serif; /* Modern font */
+  margin: 0;
+  padding: 0;
+  background-color: #1e1e1e;
+  color: #f8f9fa;
+}
+
+/* Navbar Styles - Updated for Better Visibility */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #333; /* Dark grey background */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  margin-left: -0px; /* Shift navbar to the left */
+}
+
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.navbar .logo img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.navbar .logo span {
+  font-size: 22px; /* Slightly bigger text */
+  font-weight: 600; /* Slightly bold */
+  color: #fff; /* White color for the logo text */
+}
+
+.navbar .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap; /* Allows links to wrap if necessary on small screens */
+}
+
+.navbar .nav-links a {
+  font-size: 16px;
+  padding: 8px 12px;
+  color: #f8f9fa; /* Light text color for links */
+  text-align: center;
+  text-transform: uppercase; /* Makes the text all uppercase */
+  font-weight: 500; /* Medium weight for links */
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+  color: #0dcaf0; /* Highlight links on hover */
+}
+
+.navbar .cta-btn {
+  padding: 10px 20px;
+  background: #0dcaf0; /* Light blue button */
+  border: none;
+  color: #111; /* Dark text color */
+  border-radius: 30px; /* Rounded button edges */
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600; /* Make the button text slightly bold */
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.navbar .cta-btn:hover {
+  background: #0b95c2; /* Darker blue when hovering */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Responsive Fix for Smaller Screens */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: -20px; /* Keep the navbar shifted left */
+  }
+
+  .navbar .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .navbar .cta-btn {
+    align-self: flex-end; /* Adjust button alignment for smaller screens */
+    margin-top: 10px;
+  }
+}
+
+/* About Section Styles */
+.about-us-section {
+  width: 100%;
+  padding: 60px 0;
+  text-align: center;
+  background-color: #1e1e1e;
+  margin: 0;
+}
+
+.Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px; /* Adjusted padding to prevent space on sides */
+}
+
+.ultimateImg {
+  position: relative;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.mainImg {
+  width: 100%; /* Full width of its container */
+  height: auto;
+}
+
+.purpleBox {
+  position: absolute; /* Make it positionable within the parent */
+  top: 60%; /* Shift the box much further down */
+  left: 30%; /* Shift the box further to the left */
+  right: 10%; /* Keep the right margin */
+  padding: 20px;
+  background-color: purple;
+  color: white;
+  border-radius: 10px;
+  z-index: 1; /* Ensure it's above other content */
+}
+
+.purpleText {
+  font-size: 13px;
+  text-align: center;
+}
+
+.stars {
+  width: 60px;
+  margin-top: 20px;
+}
+
+.allText {
+  max-width: 800px;
+  margin-top: 20px;
+}
+
+.headingText {
+  font-size: 32px;
+  font-weight: 700; /* Bold Heading */
+  margin-bottom: 10px;
+  color: #f8f9fa;
+  text-transform: uppercase; /* Uppercase heading */
+}
+
+.subHeadingText {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+.description {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #bbb;
+}
+
+.explore {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: #f39c12;
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.explore:hover {
+  background-color: #e67e22;
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 1024px) {
+  .Container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .headingText {
+    font-size: 28px;
+  }
+
+  .subHeadingText {
+    font-size: 16px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .explore {
+    font-size: 16px;
+    padding: 10px 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .headingText {
+    font-size: 26px;
+  }
+
+  .subHeadingText {
+    font-size: 14px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+
+  .explore {
+    font-size: 14px;
+    padding: 8px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .headingText {
+    font-size: 22px;
+  }
+
+  .subHeadingText {
+    font-size: 14px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+
+  .explore {
+    font-size: 14px;
+    padding: 10px 18px;
+  }
+}
+
+/* Custom Carousel Controls Styling */
+.carousel-control-prev, .carousel-control-next {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  border-radius: 50%;
+  color: white;
+  border: none;
+  transform: translateY(-50%);
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for buttons */
+.carousel-control-prev:hover, .carousel-control-next:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+}
+
+/* Custom icon size and color */
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-color: white;
+  width: 20px; /* Adjust icon size */
+  height: 20px;
+  border-radius: 50%; /* Optional: For rounded arrow heads */
+}
+
+/* Styling for Previous button */
+.custom-prev {
+  left: 15px; /* Position the button on the left side */
+}
+
+/* Styling for Next button */
+.custom-next {
+  right: 15px; /* Position the button on the right side */
+}
+
+/* Optional: Add some text if desired */
+.carousel-control-prev::after, .carousel-control-next::after {
+  display: none; /* Hides the default text */
+}
+
+
+/* Counter Section */
+.counter-section {
+  background-color: #001f3d; /* Dark blue background */
+  color: #fff;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.counter-section h2 {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  color: #f8f9fa;
+}
+
+.counter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.counter-box {
+  background-color: #0066cc; /* Light blue background for the boxes */
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  width: 250px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.counter-box:hover {
+  transform: translateY(-10px); /* Lift the box slightly on hover */
+}
+
+.counter-box .counter {
+  font-size: 48px;
+  font-weight: 700;
+  color: #ffcc00; /* Yellow color for the numbers */
+  margin-bottom: 15px;
+}
+
+.counter-box h3 {
+  font-size: 20px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.counter-box p {
+  font-size: 16px;
+  color: #bbb;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+  .counter-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .counter-box {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+/* Default dot styling */
+.owl-carousel .owl-dots .owl-dot {
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  background-color: rgba(0, 0, 0, 0.5); /* Default color */
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.owl-carousel .owl-dots .owl-dot.active {
+  background-color: #f39c12; /* Active dot color */
+}
+
+/* Optional: Add hover effect for dots */
+.owl-carousel .owl-dots .owl-dot:hover {
+  background-color: #e67e22; /* Hover color */
+}
+
+
+/* General Styling for the Contact Section */
+.contact-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;  /* Decreased padding for smaller size */
+  max-width: 900px;  /* Set a maximum width to limit the container size */
+  margin: 0 auto;  /* Center the container horizontally */
+}
+
+.left-col {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: -60px;
+}
+
+.logo {
+  max-width: 200px;  /* Adjust logo size if needed */
+}
+
+.right-col {
+  flex: 2;
+  padding: 20px;  /* Adjust the padding to reduce space around the form */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 700px;  /* Set a max width for the form */
+  width: 100%;
+}
+
+h1 {
+  font-size: 28px;  /* Heading size remains unchanged */
+  color: #333;
+}
+
+p {
+  font-size: 16px;  /* Paragraph size remains unchanged */
+  color: #555;
+  margin-bottom: 20px;  /* Margin below paragraph remains unchanged */
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+form input,
+form textarea {
+  padding: 10px;
+  font-size: 14px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+form button {
+  padding: 10px;
+  background-color: #f39c12;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+form button:hover {
+  background-color: #e67e22;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+
+body.dark-mode .right-col {
+  background-color: #444;
+}
+
+body.dark-mode form input,
+body.dark-mode form textarea {
+  background-color: #555;
+  color: #fff;
+  border-color: #888;
+}
+
+body.dark-mode form button {
+  background-color: #e67e22;
+}
+
+/* Theme Switcher */
+.theme-switch-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+.theme-switch {
+  position: relative;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.theme-switch .slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 45px;
+  background-color: #ccc;
+  border-radius: 50px;
+  transition: 0.4s;
+}
+
+.theme-switch input:checked + .slider {
+  background-color: #4CAF50;
+}
+
+.theme-switch .slider:before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  height: 12px;
+  width: 12px;
+  border-radius: 50px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+.theme-switch input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.description {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #777;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .left-col,
+  .right-col {
+    width: 100%;
+    text-align: center;
+  }
+
+  .right-col {
+    padding: 15px;
+  }
+
+  .logo {
+    max-width: 120px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-col,
+  .right-col {
+    width: 100%;
+    text-align: center;
+  }
+
+  .right-col {
+    padding: 30px;
+  }
+
+  .logo {
+    max-width: 150px;
+  }
+}
+
+/* General Footer Styling */
+footer {
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Left Section: Logo */
+.footer-logo {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.footer-logo .logo {
+  max-width: 150px;
+}
+
+/* Middle Section: Social Links and Info */
+.footer-content {
+  flex: 2;
+  text-align: center;
+}
+
+.footer-content p {
+  margin: 5px 0;
+}
+
+.footer-content .social-links {
+  margin: 10px 0;
+}
+
+.footer-content .social-links a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.footer-content .social-links a:hover {
+  text-decoration: underline;
+}
+
+.additional-info {
+  margin-top: 10px;
+}
+
+/* Right Section: Map */
+.footer-map {
+  flex: 1;
+  text-align: right;
+}
+
+.footer-map h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: auto;
+  border: 0;
+  border-radius: 5px;
+}
+
+/* Video Section Styling */
+.video-section {
+  background-color: #f9f9f9;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.video-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.video-container h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.video-container p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.video-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* General Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+h1, h2, h3 {
+  color: #222;
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header Section */
+header {
+  background: linear-gradient(to right, #ff9800, #f44336);
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 36px;
+  margin: 0;
+}
+
+/* Services Section */
+.services-section {
+  padding: 50px 20px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.service-item {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.service-item h3 {
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: #ff9800;
+}
+
+.service-item p {
+  font-size: 16px;
+  color: #666;
+}
+
+.service-item .learn-more {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff9800;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.service-item .learn-more:hover {
+  background-color: #f44336;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 28px;
+  }
+
+  .services-section {
+    padding: 30px 10px;
+  }
+}
