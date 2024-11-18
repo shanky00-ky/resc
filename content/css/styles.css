@@ -803,3 +803,81 @@ header h1 {
     padding: 30px 10px;
   }
 }
+
+/* Media Queries for Responsiveness */
+
+/* Tablet Devices */
+@media (max-width: 1024px) {
+  .headingText {
+    font-size: 28px;
+  }
+
+  .subHeadingText {
+    font-size: 18px;
+  }
+
+  .counter-box {
+    width: 30%;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .headingText {
+    font-size: 26px;
+  }
+
+  .subHeadingText {
+    font-size: 16px;
+  }
+
+  .counter-box {
+    width: 45%;
+    margin-bottom: 20px;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+  .headingText {
+    font-size: 22px;
+  }
+
+  .subHeadingText {
+    font-size: 14px;
+  }
+
+  .counter-box {
+    width: 80%;
+  }
+}
+
+/* Flexbox for Adjusting Elements on Smaller Screens */
+@media (max-width: 1024px) {
+  .counter-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .counter-box {
+    width: 60%;
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .counter-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .counter-box {
+    width: 80%;
+  }
+}
+
+/* Responsive Images */
+img {
+  max-width: 100%;
+  height: auto;
+}
