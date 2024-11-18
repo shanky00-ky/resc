@@ -67,3 +67,15 @@ const checkbox = document.getElementById("checkbox");
 checkbox.addEventListener("change", () => {
   document.body.classList.toggle("dark-mode", checkbox.checked);
 });
+
+
+
+// Get the elements
+const navToggle = document.getElementById('nav-toggle');
+const navList = document.getElementById('nav-list');
+
+// Toggle the 'active' class on nav-list when the hamburger icon is clicked
+navToggle.addEventListener('click', () => {
+    navList.classList.toggle('active');
+});
+
