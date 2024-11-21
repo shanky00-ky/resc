@@ -1,152 +1,118 @@
-// counter.js
+let currentIndex = 0;
 
-// Function to animate counters
+const items = document.querySelectorAll('.carousel-item');
+const indicators = document.querySelectorAll('.indicator');
+const prevButton = document.getElementById('prev');
+const nextButton = document.getElementById('next');
+
+function updateCarousel() {
+  items.forEach((item, index) => {
+    item.classList.remove('active');
+    indicators[index].classList.remove('active');
+  });
+
+  items[currentIndex].classList.add('active');
+  indicators[currentIndex].classList.add('active');
+}
+
+indicators.forEach((indicator, index) => {
+  indicator.addEventListener('click', () => {
+    currentIndex = index;
+    updateCarousel();
+  });
+});
+
+nextButton.addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % items.length;
+  updateCarousel();
+});
+
+prevButton.addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + items.length) % items.length;
+  updateCarousel();
+});
+
+setInterval(() => {
+  currentIndex = (currentIndex + 1) % items.length;
+  updateCarousel();
+}, 3000);
+
+updateCarousel();
+
+
+
 const counters = document.querySelectorAll('.counter');
 
 const animateCounters = () => {
   counters.forEach(counter => {
-    const target = +counter.getAttribute('data-count'); // Get the target count from the data-count attribute
-    const current = +counter.innerText; // Get the current count value (initially 0)
+    const target = +counter.getAttribute('data-count');
+    const current = +counter.innerText;
 
-    // Only animate if the counter has not already reached the target
     if (current < target) {
-      const increment = target / 100; // The increment value for each step
+      const increment = target / 100;
       const interval = setInterval(() => {
         if (current < target) {
-          counter.innerText = Math.ceil(current + increment); // Increment the counter
+          counter.innerText = Math.ceil(current + increment);
         } else {
-          clearInterval(interval); // Stop the interval when the target is reached
-          counter.innerText = target; // Ensure the counter reaches the target value
+          clearInterval(interval);
+          counter.innerText = target;
         }
-      }, 20); // Speed of animation (lower value = faster)
+      }, 20);
     }
   });
 };
 
-// Trigger animation when the counter section is in view
 const counterSection = document.querySelector('.counter-section');
 const sectionObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      animateCounters(); // Start the animation when the section is in view
-      observer.disconnect(); // Stop observing once animation starts
+      animateCounters();
+      observer.disconnect();
     }
   });
 }, { threshold: 0.5 });
 
-sectionObserver.observe(counterSection); // Watch for visibility of the counter section
-
-
+sectionObserver.observe(counterSection);
 
 $(document).ready(function(){
-    $(".owl-carousel").owlCarousel({
-      loop: true,
-      margin: 10,
-      nav: true,
-      autoplay: true,
-      autoplayTimeout: 3000,
-      dots: true,          // Make sure dots are enabled
-      dotsEach: true,      // Optional: Each dot corresponds to an item
-      responsive: {
-        0: {
-          items: 1
-        },
-        600: {
-          items: 3
-        },
-        1000: {
-          items: 5
-        }
+  $(".owl-carousel").owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    dots: true,
+    dotsEach: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 3
+      },
+      1000: {
+        items: 5
       }
-    });
+    }
   });
-  
-  // Dark Mode Toggle
+});
+
 const checkbox = document.getElementById("checkbox");
 
 checkbox.addEventListener("change", () => {
   document.body.classList.toggle("dark-mode", checkbox.checked);
 });
 
-
-// Get the elements
 const navToggle = document.getElementById('nav-toggle');
 const navList = document.getElementById('nav-list');
 
-// Toggle the 'active' class on nav-list when the hamburger icon is clicked
 navToggle.addEventListener('click', () => {
-    navList.classList.toggle('active');
+  navList.classList.toggle('active');
 });
 
-
-// Placeholder Data
 const users = ["Alice", "Bob", "Charlie"];
 const feedback = ["Great site!", "Add more features", "Bug in login page"];
 
-// Update Overview Stats
 document.getElementById("total-users").innerText = users.length;
 document.getElementById("total-feedback").innerText = feedback.length;
 document.getElementById("active-sessions").innerText = Math.floor(Math.random() * 10 + 1);
-
-// Content Management
-function addContent() {
-    alert("Redirecting to add new content...");
-}
-
-function editContent() {
-    alert("Redirecting to edit content...");
-}
-
-// User Management
-function viewUsers() {
-    alert("Viewing users: " + users.join(", "));
-}
-
-function manageRoles() {
-    alert("Redirecting to manage user roles...");
-}
-
-// Analytics
-function viewTraffic() {
-    alert("Viewing website traffic data...");
-}
-
-function viewUsage() {
-    alert("Viewing user activity...");
-}
-
-// Notifications
-function viewNotifications() {
-    alert("Viewing all notifications...");
-}
-
-function sendAlert() {
-    alert("Sending alert to all users...");
-}
-
-// Settings
-function updateSettings() {
-    alert("Updating website settings...");
-}
-
-function manageThemes() {
-    alert("Managing website themes...");
-}
-
-// Logs
-function viewLogs() {
-    alert("Viewing system logs...");
-}
-
-function clearLogs() {
-    alert("Clearing system logs...");
-}
-
-// Reports
-function generateReport() {
-    alert("Generating report...");
-}
-
-function downloadReport() {
-    alert("Downloading report...");
-}
