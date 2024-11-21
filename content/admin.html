@@ -4,83 +4,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <style>
+        /* General Admin Page Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
 
-       
+.admin-header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.admin-header nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+.admin-content {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.stats {
+    display: flex;
+    gap: 20px;
+}
+
+.stats div {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+    </style>
 </head>
 <body>
+    <header class="admin-header">
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="admin.html">Admin</a>
+            <a href="logout.html">Logout</a>
+        </nav>
+    </header>
 
-<header>
-    <h1>Admin Dashboard</h1>
-</header>
-
-<div class="container">
-    <h2>Add a New Feature</h2>
-    <form id="addFeatureForm">
-        <div class="form-group">
-            <label for="featureName">Feature Name:</label>
-            <input type="text" id="featureName" name="featureName" required>
-        </div>
-        <div class="form-group">
-            <label for="featureDescription">Feature Description:</label>
-            <textarea id="featureDescription" name="featureDescription" required></textarea>
-        </div>
-        <button type="submit">Add Feature</button>
-    </form>
-
-    <h2>Existing Features</h2>
-    <div class="feature-list" id="featureList">
-        <!-- Features will be dynamically populated here -->
-    </div>
-</div>
-
-<script>
-// Example JavaScript to handle CRUD operations
-document.addEventListener('DOMContentLoaded', function() {
-    const featureList = document.getElementById('featureList');
-    const addFeatureForm = document.getElementById('addFeatureForm');
-
-    // Sample data (This should be replaced with a database call via backend)
-    let features = [
-        { id: 1, name: 'Feature 1', description: 'Description of feature 1' },
-        { id: 2, name: 'Feature 2', description: 'Description of feature 2' }
-    ];
-
-    function renderFeatures() {
-        featureList.innerHTML = '';
-        features.forEach(feature => {
-            const featureItem = document.createElement('div');
-            featureItem.classList.add('feature-item');
-            featureItem.innerHTML = `
+    <main class="admin-content">
+        <!-- Overview Section -->
+        <section class="overview">
+            <h2>Overview</h2>
+            <div class="stats">
                 <div>
-                    <strong>${feature.name}</strong>
-                    <p>${feature.description}</p>
+                    <h3>Total Users</h3>
+                    <p id="total-users">0</p>
                 </div>
                 <div>
-                    <button onclick="deleteFeature(${feature.id})">Delete</button>
+                    <h3>Active Sessions</h3>
+                    <p id="active-sessions">0</p>
                 </div>
-            `;
-            featureList.appendChild(featureItem);
-        });
-    }
+                <div>
+                    <h3>Feedback</h3>
+                    <p id="total-feedback">0</p>
+                </div>
+            </div>
+        </section>
 
-    addFeatureForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const featureName = document.getElementById('featureName').value;
-        const featureDescription = document.getElementById('featureDescription').value;
-        const newFeature = { id: Date.now(), name: featureName, description: featureDescription };
-        features.push(newFeature);
-        renderFeatures();
-        addFeatureForm.reset();
-    });
+        <!-- Content Management -->
+        <section>
+            <h2>Content Management</h2>
+            <button onclick="addContent()">Add New Content</button>
+            <button onclick="editContent()">Edit Existing Content</button>
+        </section>
 
-    window.deleteFeature = function(id) {
-        features = features.filter(feature => feature.id !== id);
-        renderFeatures();
-    }
+        <section>
+            <h2>Message</h2>
+            <button onclick="viewMessage()">View All Message</button>
+            <button onclick="editMessage()">Edit Existing</button>
+        </section>
 
-    renderFeatures();
-});
-</script>
+        <!-- User Management -->
+        <section>
+            <h2>User Management</h2>
+            <button onclick="viewUsers()">View All Users</button>
+            <button onclick="manageRoles()">Manage User Roles</button>
+        </section>
 
+        <!-- Analytics -->
+        <section>
+            <h2>Analytics</h2>
+            <button onclick="viewTraffic()">View Website Traffic</button>
+            <button onclick="viewUsage()">View User Activity</button>
+        </section>
+
+        <!-- Notifications -->
+        <section>
+            <h2>Notifications</h2>
+            <button onclick="viewNotifications()">View All Notifications</button>
+            <button onclick="sendAlert()">Send Alert</button>
+        </section>
+
+        <!-- Settings -->
+        <section>
+            <h2>Settings</h2>
+            <button onclick="updateSettings()">Update Website Settings</button>
+            <button onclick="manageThemes()">Manage Themes</button>
+        </section>
+
+        <!-- Logs -->
+        <section>
+            <h2>System Logs</h2>
+            <button onclick="viewLogs()">View Logs</button>
+            <button onclick="clearLogs()">Clear Logs</button>
+        </section>
+
+        <!-- Reports -->
+        <section>
+            <h2>Reports</h2>
+            <button onclick="generateReport()">Generate Reports</button>
+            <button onclick="downloadReport()">Download Reports</button>
+        </section>
+    </main>
+
+    <script src=".../script.js"></script>
 </body>
 </html>
