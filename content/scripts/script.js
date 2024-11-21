@@ -69,7 +69,6 @@ checkbox.addEventListener("change", () => {
 });
 
 
-
 // Get the elements
 const navToggle = document.getElementById('nav-toggle');
 const navList = document.getElementById('nav-list');
@@ -79,3 +78,75 @@ navToggle.addEventListener('click', () => {
     navList.classList.toggle('active');
 });
 
+
+// Placeholder Data
+const users = ["Alice", "Bob", "Charlie"];
+const feedback = ["Great site!", "Add more features", "Bug in login page"];
+
+// Update Overview Stats
+document.getElementById("total-users").innerText = users.length;
+document.getElementById("total-feedback").innerText = feedback.length;
+document.getElementById("active-sessions").innerText = Math.floor(Math.random() * 10 + 1);
+
+// Content Management
+function addContent() {
+    alert("Redirecting to add new content...");
+}
+
+function editContent() {
+    alert("Redirecting to edit content...");
+}
+
+// User Management
+function viewUsers() {
+    alert("Viewing users: " + users.join(", "));
+}
+
+function manageRoles() {
+    alert("Redirecting to manage user roles...");
+}
+
+// Analytics
+function viewTraffic() {
+    alert("Viewing website traffic data...");
+}
+
+function viewUsage() {
+    alert("Viewing user activity...");
+}
+
+// Notifications
+function viewNotifications() {
+    alert("Viewing all notifications...");
+}
+
+function sendAlert() {
+    alert("Sending alert to all users...");
+}
+
+// Settings
+function updateSettings() {
+    alert("Updating website settings...");
+}
+
+function manageThemes() {
+    alert("Managing website themes...");
+}
+
+// Logs
+function viewLogs() {
+    alert("Viewing system logs...");
+}
+
+function clearLogs() {
+    alert("Clearing system logs...");
+}
+
+// Reports
+function generateReport() {
+    alert("Generating report...");
+}
+
+function downloadReport() {
+    alert("Downloading report...");
+}
