@@ -216,6 +216,23 @@ include("./conn.php");
     }
     ?>
 </div>
+<h1>Live Updates</h1>
+<div class="live-score">
+  <p>Match: Team A vs Team B</p>
+  <p>Score: 2 - 1</p>
+</div>
+
+<h1>Membership</h1>
+<p>Join the exclusive fan club for behind-the-scenes content and early ticket access!</p>
+<a href="signup.html" class="button">Sign Up</a>
+
+
+<h1>Discussion Boards</h1>
+<p>Join the conversation:</p>
+<ul>
+  <li><a href="topic1.html">Match Discussions</a></li>
+  <li><a href="topic2.html">Training Tips</a></li>
+</ul>
 <div class="contact-container">
     <div class="left-col">
       <img class="logo" src="content/images/volleyball-blue-logo-vector-21638307-removebg-preview.png" alt="Logo"/>
@@ -239,7 +256,25 @@ include("./conn.php");
       <div id="success-msg"></div>
     </div>
   </div>
-
+ <h1>Team Statistics</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Season</th>
+      <th>Wins</th>
+      <th>Losses</th>
+      <th>Top Scorer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2023</td>
+      <td>25</td>
+      <td>5</td>
+      <td>John Doe</td>
+    </tr>
+  </tbody>
+</table>
 <section class="video-section">
   <div class="video-container">
     <h2>Our Story</h2>
