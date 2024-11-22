@@ -3,7 +3,7 @@ include("./conn.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Volleyball Tournament 2024</title>
@@ -13,13 +13,14 @@ include("./conn.php");
           <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
         </noscript>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">        
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-        <link rel="stylesheet" href="content/css/styles.css">  
+        <link rel="stylesheet" href="content/css/styles.css">
+        <link rel="icon" href="path_to_your_favicon/favicon.ico" type="image/x-icon">
         <meta property="og:title" content="Volleyball Tournament 2024">
         <meta property="og:description" content="Join the 2024 Volleyball Tournament and experience the excitement. Register now for an action-packed event.">
         <meta property="og:image" content="path_to_your_image/image.jpg">
@@ -47,10 +48,12 @@ include("./conn.php");
     $sql = "SELECT * FROM `01_menu`;";
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
-    ?>
+    if ($row["01_name"] != "Register") {
+      ?>
       <a href="<?= $row['01_url']; ?>"><?= $row['01_name']; ?></a>
       
       <?php
+    }
       if ($row['01_name'] == "Register") {
       ?>
         <button onclick="window.location.href='<?= $BASE_URL . $row['01_url']; ?>'" class="cta-btn">
@@ -64,13 +67,11 @@ include("./conn.php");
     ?>
   </nav>
 </header>
-
-<!-- Carousel Section -->
 <section id="carouselSection" class="carousel-container">
     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="volleyball2"></button>
+        <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="volleyball 2"></button>
         <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="volleyball 3"></button>
         <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="3" aria-label="volleyball 4"></button>
       </div>
@@ -114,7 +115,6 @@ include("./conn.php");
   </button>
     </div>
   </section>
-
 <section id="about-us" class="about-us-section">
     <div class="responsive-container-block bigContainer">
       <div class="responsive-container-block Container bottomContainer">
@@ -136,7 +136,7 @@ include("./conn.php");
             if ($row['m02_name'] == '2img about') {
                 ?>
                 <div class="stars-container">
-                    <img class="stars" src="<?= $row['m02_img']; ?>" alt="Stars">
+                    <img class="stars" src="<?= $row['m02_img']; ?>" alt="<?= $row['m02_name']; ?>">
                 </div>
                 <?php
             }
@@ -308,7 +308,7 @@ include("./conn.php");
     if ($row['m08_name'] == 'Logo') {
       ?>
       <div class="footer-logo">
-        <img src="<?= $row['m08_url']?>" alt="<?= $row['m08_name']?>" class="logo">
+        <img src="content/images/<?= $row['m08_url']?>" alt="<?= $row['m08_name']?>" class="logo">
       </div>
       <?php }
       ?>
