@@ -1,9 +1,9 @@
 {
-  box-sizing: border-box; /* Ensures padding and border are included in width/height */
+  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Poppins', sans-serif; /* Modern font */
+  font-family: 'Poppins', sans-serif; 
   margin: 0;
   padding: 0;
   background-color: #1e1e1e;
@@ -115,7 +115,7 @@ body {
   background-color: white;
 }
 
-/* Media Queries for Responsive Navbar */
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
