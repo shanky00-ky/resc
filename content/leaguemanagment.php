@@ -81,7 +81,7 @@ include(".\conn.php");
 
     .teams-table th {
       background-color: #00bcd4;
-      color: white;
+      color: black;
     }
 
     .teams-table td {
@@ -194,17 +194,17 @@ include(".\conn.php");
 
 <header>
   <h1>Volleyball League Management</h1>
-  <p>Manage teams, matches, schedules, and standings with ease</p>
+  <p>Teams, matches, schedules, and standings with ease</p>
 </header>
 
 <section class="league-management container">
-  <h2>Welcome to the League Management Dashboard</h2>
-  <p>Here, you can manage the teams, schedule matches, and track standings for your volleyball league. Use the sections below to navigate through various league management options.</p>
+  <h2> League Management Dashboard</h2>
+  <p> you can see the teams, schedule matches, and track standings for your volleyball league. </p>
 </section>
 
 <section class="teams-section container">
   <h2>Teams</h2>
-  <p>Below is a list of teams currently participating in the league. You can add new teams, edit existing ones, or remove inactive teams.</p>
+  <p>Below is a list of teams currently participating in the league.</p>
 
   <table class="teams-table">
     <thead>
@@ -216,27 +216,39 @@ include(".\conn.php");
       </tr>
     </thead>
     <tbody>
+      <?php 
+    $sql = 'SELECT * FROM m14_leaguemng WHERE m14_status = 1;';
+    $result = mysqli_query($conn ,$sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+      ?>
       <tr>
-        <td>Team A</td>
-        <td>Coach John</td>
-        <td>Captain Alex</td>
-        <td>Active</td>
-      </tr>
-      <tr>
-        <td>Team B</td>
-        <td>Coach Sarah</td>
-        <td>Captain Rachel</td>
-        <td>Active</td>
-      </tr>
-      <tr>
-        <td>Team C</td>
-        <td>Coach Michael</td>
-        <td>Captain David</td>
-        <td>Inactive</td>
+        <th><?php echo $row['m14_teamnames']; ?></th>
+        <th><?php echo $row['m14_coachname']; ?></th>
+        <th><?php echo $row['m14_captain']; ?> </th>
+        <th><?php echo $row['m14_stats']; ?></th>
       </tr>
     </tbody>
-  </table>
+  <?php }
+  ?>
+</table>
 </section>
+<!-- <td>Team A</td>
+<td>Coach John</td>
+<td>Captain Alex</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>Team B</td>
+<td>Coach Sarah</td>
+<td>Captain Rachel</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>Team C</td>
+<td>Coach Michael</td>
+<td>Captain David</td>
+<td>Inactive</td>
+</tr> -->
 
 <section class="schedule-section container">
   <h2>Match Schedule</h2>
@@ -252,21 +264,30 @@ include(".\conn.php");
       </tr>
     </thead>
     <tbody>
+      <?php 
+      $sql = 'SELECT * FROM m14_leaguemng WHERE m14_status = 1;';
+      $result = mysqli_query($conn ,$sql);
+      while ($row = mysqli_fetch_assoc($result)) {
+        if ($row['m14_schedule'] == 'Schedule') {
+        ?>
       <tr>
-        <td>Nov 25, 2024</td>
-        <td>Team A vs Team B</td>
-        <td>Volleyball Arena</td>
-        <td>Scheduled</td>
+        <td><?= $row['m14_date'];?></td>
+        <td><?= $row['m14_matchsedule'];?></td>
+        <td><?= $row['m14_location'];?></td>
+        <td><?= $row['m14_schedule']?></td>
       </tr>
-      <tr>
-        <td>Nov 26, 2024</td>
-        <td>Team B vs Team C</td>
-        <td>Beach Court</td>
-        <td>Scheduled</td>
-      </tr>
+      
     </tbody>
+    <?php }}
+    ?>
   </table>
 </section>
+<!-- <tr>
+  <td>Nov 26, 2024</td>
+  <td>Team B vs Team C</td>
+  <td>Beach Court</td>
+  <td>Scheduled</td>
+</tr> -->
 
 <section class="standings-section container">
   <h2>Standings</h2>
@@ -277,48 +298,112 @@ include(".\conn.php");
       <tr>
         <th>Rank</th>
         <th>Team</th>
-        <th>Played</th>
         <th>Won</th>
         <th>Lost</th>
-        <th>Points</th>
       </tr>
     </thead>
     <tbody>
+      <?php 
+      $sql = 'SELECT * FROM m14_leaguemng WHERE m14_status = 1 ORDER BY m14_rank ASC;';
+      $result = mysqli_query($conn ,$sql);
+      while ($row =mysqli_fetch_assoc($result)) {
+        ?>
+
       <tr>
-        <td>1</td>
-        <td>Team A</td>
-        <td>3</td>
-        <td>2</td>
-        <td>1</td>
-        <td>6</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Team B</td>
-        <td>3</td>
-        <td>2</td>
-        <td>1</td>
-        <td>6</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Team C</td>
-        <td>3</td>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
+        <td><?= $row['m14_rank']; ?></td>
+        <td><?= $row['m14_teamnames']; ?></td>
+        <td><?= $row['m14_won']; ?></td>
+        <td><?= $row['m14_matchlost']; ?></td>
       </tr>
     </tbody>
+    <?php }
+    ?>
   </table>
 </section>
+<!-- <tr>
+  <td>2</td>
+  <td>Team B</td>
+  <td>3</td>
+  <td>2</td>
+  <td>1</td>
+  <td>6</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>Team C</td>
+  <td>3</td>
+  <td>1</td>
+  <td>2</td>
+  <td>3</td>
+</tr> -->
 
 <section class="cta-section">
+<?php
+    $sql = "SELECT * FROM `01_menu`;";
+    $result = mysqli_query($conn, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+      if ($row['01_name'] == 'Register') {
+        ?>
   <h2>Want to Join the League?</h2>
-  <a href="#">Register a New Team</a>
+  <a href="<?= $row ['01_url']?>">Register a New Team</a>
+  <?php }
+    }
+    ?>
 </section>
 
 <footer>
-  <p>&copy; 2024 Volleyball League Management. All rights reserved.</p>
+<div class="footer-container">
+  <?php 
+  $sql = 'SELECT * FROM m08_footer WHERE m08_status = 1 ;';
+  $result = mysqli_query($conn, $sql);
+  while ($row = mysqli_fetch_assoc($result)) {
+    if ($row['m08_name'] == 'Logo') {
+      ?>
+      <div class="footer-logo">
+        <img src="images\<?= $row['m08_url']?>" alt="<?= $row['m08_name']?>" class="logo">
+      </div>
+      <?php }
+      ?>
+  <div class="footer-container">
+    <?php
+      if ($row['m08_name'] == 'content'){
+        ?>
+    <div class="footer-content">
+      <p><?= $row['m08_disc']?></p>
+      <?php }
+      if (in_array($row['m08_name'],['Facebook','Twitter','Instagram'])){
+      ?>
+        <div class ="footer-social">
+        <a href="<?= $row['m08_url']; ?>"><?= $row['m08_name']?></a>
+        <!-- <a href="#">Twitter</a>
+        <a href="#">Instagram</a> -->
+      </div>
+      <?php}
+      if (in_array($row['m08_name'] ,['Contactus','Phoneno'])){
+        ?>
+      <div class="additional-info">
+        <p><?= $row['m08_disc']?>: <?= $row['m08_name']?></p>
+        <!-- <p>Phone: 548454874774</p> -->
+      </div>
+    </div>
+    <?php }
+    if ($row['m08_name'] == 'location'){
+      ?>
+    <div class="footer-map">
+      <iframe 
+        src="<?= $row['m08_url'];?>" 
+        width="500" 
+        height="350" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <?php }
+  }
+  ?>
+  </div>
 </footer>
 
 </body>

@@ -306,8 +306,8 @@ body {
   position: absolute;
   top: 50%;
   z-index: 5;
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   color: white;
@@ -345,6 +345,23 @@ body {
 }
 
 
+.owl-carousel .owl-dots .owl-dot {
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  background-color: rgba(0, 0, 0, 0.5); 
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.owl-carousel .owl-dots .owl-dot.active {
+  background-color: #f39c12; 
+}
+
+
+.owl-carousel .owl-dots .owl-dot:hover {
+  background-color: #e67e22; 
+}
 
 .counter-section {
   background-color: #001f3d; 
@@ -414,24 +431,6 @@ body {
   }
 }
 
-
-.owl-carousel .owl-dots .owl-dot {
-  width: 12px;
-  height: 12px;
-  margin: 0 5px;
-  background-color: rgba(0, 0, 0, 0.5); 
-  border-radius: 50%;
-  transition: background-color 0.3s ease;
-}
-
-.owl-carousel .owl-dots .owl-dot.active {
-  background-color: #f39c12; 
-}
-
-
-.owl-carousel .owl-dots .owl-dot:hover {
-  background-color: #e67e22; 
-}
 
 
 

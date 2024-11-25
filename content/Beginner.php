@@ -8,7 +8,7 @@ include(".\conn.php");
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Beginner's Program | Volleyball</title>
   <style>
-    /* General Styling */
+    
     body {
       font-family: 'Arial', sans-serif;
       margin: 0;
@@ -34,7 +34,7 @@ include(".\conn.php");
       padding: 20px;
     }
 
-    /* Header Section */
+    
     header {
       background: linear-gradient(to right, #0066cc, #003366);
       color: white;
@@ -47,7 +47,6 @@ include(".\conn.php");
       margin: 0;
     }
 
-    /* Program Details Section */
     .program-details {
       padding: 50px 20px;
     }
@@ -84,7 +83,7 @@ include(".\conn.php");
       color: #cccccc;
     }
 
-    /* CTA Section */
+    
     .cta-section {
       text-align: center;
       padding: 30px;
@@ -112,7 +111,6 @@ include(".\conn.php");
       background-color: #004499;
     }
 
-    /* Footer */
     footer {
       background: #1c1c1c;
       padding: 20px;
@@ -158,7 +156,58 @@ include(".\conn.php");
 </section>
 
 <footer>
-  <p>&copy; 2024 Volleyball Training. All rights reserved.</p>
+<div class="footer-container">
+  <?php 
+  $sql = 'SELECT * FROM m08_footer WHERE m08_status = 1 ;';
+  $result = mysqli_query($conn, $sql);
+  while ($row = mysqli_fetch_assoc($result)) {
+    if ($row['m08_name'] == 'Logo') {
+      ?>
+      <div class="footer-logo">
+        <img src="images/<?= $row['m08_url']?>" alt="<?= $row['m08_name']?>" class="logo">
+      </div>
+      <?php }
+      ?>
+  <div class="footer-container">
+    <?php
+      if ($row['m08_name'] == 'content'){
+        ?>
+    <div class="footer-content">
+      <p><?= $row['m08_disc']?></p>
+      <?php }
+      if (in_array($row['m08_name'],['Facebook','Twitter','Instagram'])){
+      ?>
+        <div class ="footer-social">
+        <a href="<?= $row['m08_url']; ?>"><?= $row['m08_name']?></a>
+        <!-- <a href="#">Twitter</a>
+        <a href="#">Instagram</a> -->
+      </div>
+      <?php}
+      if (in_array($row['m08_name'] ,['Contactus','Phoneno'])){
+        ?>
+      <div class="additional-info">
+        <p><?= $row['m08_name']?>: <?= $row['m08_disc']?></p>
+        <!-- <p>Phone: 548454874774</p> -->
+      </div>
+    </div>
+    <?php }
+    if ($row['m08_name'] == 'location'){
+      ?>
+    <div class="footer-map">
+      <iframe 
+        src="<?= $row['m08_url'];?>" 
+        width="350" 
+        height="290" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <?php }
+  }
+  ?>
+  </div>
 </footer>
 
 </body>

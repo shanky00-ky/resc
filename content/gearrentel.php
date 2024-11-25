@@ -17,6 +17,7 @@ include(".\conn.php");
       color: #f2f2f2;
     }
 
+    
     h1, h2, h3 {
       text-align: center;
       color: #00bcd4;
@@ -139,6 +140,21 @@ include(".\conn.php");
 <header>
   <h1>Volleyball Gear Rental</h1>
   <p>Rent your volleyball gear easily and quickly!</p>
+  <?php
+      $sql = "SELECT * FROM `m12_signup`;";
+      $result = mysqli_query($conn, $sql);
+      while ($row = mysqli_fetch_assoc($result)) {
+        if ($row['m12_name'] == "Home") {
+        ?>
+          <button onclick="window.location.href='<?= $BASE_URL . $row['m12_url']; ?>'" class="cta-btn">
+            <?= isset($row['m12_url']) ? $row['m12_name'] : 'Home'; ?>
+          </button>
+        <?php
+        }
+        ?>
+      <?php
+      }
+      ?>
 </header>
 
 <section class="gear-rental container">
@@ -160,37 +176,19 @@ include(".\conn.php");
       </tr>
     </thead>
     <tbody>
+      <?php 
+      $sql= 'SELECT * FROM m16_gearpage WHERE m16_status = 1';
+      $result= mysqli_query($conn, $sql);
+      while ($row=mysqli_fetch_array($result))
+      { ?>
       <tr>
-        <td>Official Volleyball</td>
-        <td>Ball</td>
-        <td>$5</td>
-        <td>In Stock</td>
-      </tr>
-      <tr>
-        <td>Professional Net</td>
-        <td>Net</td>
-        <td>$10</td>
-        <td>In Stock</td>
-      </tr>
-      <tr>
-        <td>Sports Knee Pads</td>
-        <td>Protective Gear</td>
-        <td>$3</td>
-        <td>In Stock</td>
-      </tr>
-      <tr>
-        <td>Volleyball Shoes</td>
-        <td>Shoes</td>
-        <td>$8</td>
-        <td>Out of Stock</td>
-      </tr>
-      <tr>
-        <td>Team Jerseys (Set of 6)</td>
-        <td>Apparel</td>
-        <td>$20</td>
-        <td>In Stock</td>
+        <td><?= $row['m16_name']; ?></td>
+        <td><?= $row['m16_Category']; ?></td>
+        <td><?= $row['m16_price']; ?></td>
+        <td><?= $row['m16_Availability']; ?></td>
       </tr>
     </tbody>
+    <?php } ?>
   </table>
 </section>
 
@@ -198,7 +196,7 @@ include(".\conn.php");
   <h2>Rent Gear</h2>
   <p>Fill out the form below to rent your gear. After submitting, we’ll confirm the availability and rental duration.</p>
 
-  <form class="gear-form">
+  <form class="gear-form" action="process_gear.php" method="post">
     <label for="gear-item">Select Gear Item</label>
     <select id="gear-item" name="gear-item" required>
       <option value="volleyball">Official Volleyball</option>
@@ -225,8 +223,58 @@ include(".\conn.php");
 </section>
 
 <footer>
-  <p>&copy; 2024 Volleyball Gear Rental. All rights reserved.</p>
+<div class="footer-container">
+  <?php 
+  $sql = 'SELECT * FROM m08_footer WHERE m08_status = 1 ;';
+  $result = mysqli_query($conn, $sql);
+  while ($row = mysqli_fetch_assoc($result)) {
+    if ($row['m08_name'] == 'Logo') {
+      ?>
+      <div class="footer-logo">
+        <img src="images/<?= $row['m08_url']?>" alt="<?= $row['m08_name']?>" class="logo">
+      </div>
+      <?php }
+      ?>
+  <div class="footer-container">
+    <?php
+      if ($row['m08_name'] == 'content'){
+        ?>
+    <div class="footer-content">
+      <p><?= $row['m08_disc']?></p>
+      <?php }
+      if (in_array($row['m08_name'],['Facebook','Twitter','Instagram'])){
+      ?>
+        <div class ="footer-social">
+        <a href="<?= $row['m08_url']; ?>"><?= $row['m08_name']?></a>
+        <!-- <a href="#">Twitter</a>
+        <a href="#">Instagram</a> -->
+      </div>
+      <?php}
+      if (in_array($row['m08_name'] ,['Contactus','Phoneno'])){
+        ?>
+      <div class="additional-info">
+        <p><?= $row['m08_name']?>: <?= $row['m08_disc']?></p>
+        <!-- <p>Phone: 548454874774</p> -->
+      </div>
+    </div>
+    <?php }
+    if ($row['m08_name'] == 'location'){
+      ?>
+    <div class="footer-map">
+      <iframe 
+        src="<?= $row['m08_url'];?>" 
+        width="700" 
+        height="350" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <?php }
+  }
+  ?>
+  </div>
 </footer>
-
 </body>
 </html>

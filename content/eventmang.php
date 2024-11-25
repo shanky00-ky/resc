@@ -135,18 +135,31 @@ include(".\conn.php");
 <body>
 
 <header>
+  <?php 
+ $sql = "SELECT * FROM `m12_signup`;";
+ $result = mysqli_query($conn, $sql);
+ while ($row = mysqli_fetch_assoc($result)) {
+   if ($row['m12_name'] == "Home") {
+   ?>
+     <button onclick="window.location.href='<?= $BASE_URL . $row['m12_url']; ?>'" class="cta-btn">
+       <?= isset($row['m12_url']) ? $row['m12_name'] : 'Home'; ?>
+     </button>
+   <?php
+   }
+   ?>
+  <?php }
+  ?>
   <h1>Volleyball Event Planning</h1>
-  <p>Organize, plan, and promote your volleyball events</p>
 </header>
 
 <section class="event-planning container">
-  <h2>Welcome to the Volleyball Event Planning Page</h2>
-  <p>Here, you can plan and manage upcoming volleyball events, tournaments, fundraisers, and community gatherings. Use the sections below to view and add new events.</p>
+  <h2>The Volleyball Event Page</h2>
+  <p>You can see the upcoming volleyball events, tournaments, fundraisers, and community gatherings.</p>
 </section>
 
 <section class="event-list container">
   <h2>Upcoming Events</h2>
-  <p>Check out the upcoming volleyball events and tournaments. You can register for events, view details, or add your own event.</p>
+  <p>Check out the upcoming volleyball events and tournaments. </p>
 
   <table class="event-table">
     <thead>
@@ -158,13 +171,19 @@ include(".\conn.php");
       </tr>
     </thead>
     <tbody>
+      <?php 
+      $sql = 'SELECT * FROM m15_eventmng WHeRE m15_status = 1;';
+      $result = mysqli_query($conn, $sql);
+      while ($row = mysqli_fetch_assoc($result)) {
+        ?>
       <tr>
-        <td>Annual Volleyball Tournament</td>
-        <td>Dec 10, 2024</td>
-        <td>Volleyball Arena</td>
-        <td>Registration Open</td>
+        <td><?= $row['m15_Eventname']; ?></td>
+        <td><?= $row['m15_date']; ?></td>
+        <td><?= $row['m15_location']; ?></td>
+        <td><?= $row['m15_regstatus']; ?></td>
       </tr>
-      <tr>
+
+      <!-- <tr>
         <td>Community Volleyball Fundraiser</td>
         <td>Jan 15, 2025</td>
         <td>Beach Court</td>
@@ -175,34 +194,66 @@ include(".\conn.php");
         <td>Feb 5, 2025</td>
         <td>Indoor Gym</td>
         <td>Registration Open</td>
-      </tr>
+      </tr> -->
     </tbody>
+    <?php 
+      }
+      ?>
   </table>
 </section>
-
-<section class="event-details container">
-  <h2>Plan a New Event</h2>
-  <p>Fill out the form below to submit details for a new volleyball event. After submission, your event will be reviewed and added to the event list.</p>
-
-  <form class="event-form">
-    <label for="event-name">Event Name</label>
-    <input type="text" id="event-name" name="event-name" placeholder="Enter event name" required>
-
-    <label for="event-date">Event Date</label>
-    <input type="date" id="event-date" name="event-date" required>
-
-    <label for="event-location">Event Location</label>
-    <input type="text" id="event-location" name="event-location" placeholder="Enter event location" required>
-
-    <label for="event-description">Event Description</label>
-    <textarea id="event-description" name="event-description" placeholder="Provide a detailed description of the event" required></textarea>
-
-    <button type="submit">Submit Event</button>
-  </form>
-</section>
-
 <footer>
-  <p>&copy; 2024 Volleyball Event Planning. All rights reserved.</p>
+<div class="footer-container">
+  <?php 
+  $sql = 'SELECT * FROM m08_footer WHERE m08_status = 1 ;';
+  $result = mysqli_query($conn, $sql);
+  while ($row = mysqli_fetch_assoc($result)) {
+    if ($row['m08_name'] == 'Logo') {
+      ?>
+      <div class="footer-logo">
+        <img src="images\<?= $row['m08_url']?>" alt="<?= $row['m08_name']?>" class="logo">
+      </div>
+      <?php }
+      ?>
+  <div class="footer-container">
+    <?php
+      if ($row['m08_name'] == 'content'){
+        ?>
+    <div class="footer-content">
+      <p><?= $row['m08_disc']?></p>
+      <?php }
+      if (in_array($row['m08_name'],['Facebook','Twitter','Instagram'])){
+      ?>
+        <div class ="footer-social">
+        <a href="<?= $row['m08_url']; ?>"><?= $row['m08_name']?></a>
+        <!-- <a href="#">Twitter</a>
+        <a href="#">Instagram</a> -->
+      </div>
+      <?php}
+      if (in_array($row['m08_name'] ,['Contactus','Phoneno'])){
+        ?>
+      <div class="additional-info">
+        <p><?= $row['m08_disc']?>: <?= $row['m08_name']?></p>
+        <!-- <p>Phone: 548454874774</p> -->
+      </div>
+    </div>
+    <?php }
+    if ($row['m08_name'] == 'location'){
+      ?>
+    <div class="footer-map">
+      <iframe 
+        src="<?= $row['m08_url'];?>" 
+        width="700" 
+        height="350" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <?php }
+  }
+  ?>
+  </div>
 </footer>
 
 </body>

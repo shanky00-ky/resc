@@ -1,6 +1,4 @@
-<?php include(".\conn.php"); ?>
-
-<?php
+<?php include(".\conn.php");
 if (isset($_POST['confirm_password'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];

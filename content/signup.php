@@ -158,7 +158,7 @@ p a:hover {
       if ($row['m12_name'] == 'Logo') {
         ?>
         <div class="footer-logo">
-          <img src="images/<?= $row['m12_url']?>" alt="<?= $row['m12_name']?>" class="logo">
+          <img src="images\<?= $row['m12_url']?>" alt="<?= $row['m12_name']?>" class="logo">
         </div>
         <?php }
         ?>

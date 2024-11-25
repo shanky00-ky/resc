@@ -12,12 +12,13 @@ include("../conn.php");
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #101820;
+  background-color: black;
   color: white;
 }
 
 header {
-  background-color: #000000;
+  background-color: #101820
+  ;
   padding: 20px;
   text-align: center;
 }
@@ -151,6 +152,7 @@ p a:hover {
 
 <header>
   <header class="navbar">
+    <h2>Volleyball League</h2>
     <?php
     $sql = 'SELECT * FROM m11_loginpage WHERE m11_status = 1;';
     $result = mysqli_query($conn, $sql);
@@ -158,8 +160,8 @@ p a:hover {
       if ($row['m11_name'] == 'Logo') {
     ?>
       <div class="logo">
-        <img src="images/<?= $row['m11_url']; ?>" alt="<?= $row['m11_name']; ?>">
-        <span>Volleyball League</span>
+        <img src="images\<?= $row['m11_url']; ?>" alt="<?= $row['m11_name']; ?>">
+        
       </div>
     <?php
     }
@@ -184,7 +186,6 @@ p a:hover {
     </nav>
   </header>
 </header>
-
 <div class="container">
 <form method="POST" action="process_login.php">
     <label for="email">Email:</label>
